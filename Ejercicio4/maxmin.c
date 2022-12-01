@@ -16,16 +16,15 @@ int main(int argc, char const *argv[])
 
 
 	/*Test num argumentos*/
-	if(argc>2 || argc<2)
+	if(argc!=2)
 		return -1;
 
 	/*Abrir Fichero*/
-	if(argc==2){
-		fichero=fopen(argv[1],"r");
-		/*No se puede leer*/
-		if(fichero==NULL)
-			return -1;
-	}
+	fichero=fopen(argv[1],"r");
+	/*No se puede leer*/
+	if(fichero==NULL)
+		return -1;
+	
 
 
 	while(fscanf(fichero,"%f",&num)!=-1){
