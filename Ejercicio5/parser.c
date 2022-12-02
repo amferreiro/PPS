@@ -40,7 +40,7 @@ int parser(FILE * file){
 		fprintf(stderr,"ERROR: Cabecera vacia\n");
 		return -1;
 	}
-	if(tam>15){
+	if(tam>MaxCampos){
 		fprintf(stderr,"ERROR: Cabecera de mayor tamaño a lo permitido\n");
 		return -1;
 	}
