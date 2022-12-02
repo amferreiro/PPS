@@ -40,6 +40,10 @@ int parser(FILE * file){
 		fprintf(stderr,"ERROR: Cabecera vacia\n");
 		return -1;
 	}
+	if(tam>15){
+		fprintf(stderr,"ERROR: Cabecera de mayor tamaño a lo permitido\n");
+		return -1;
+	}
 
 	/*Leer lineas*/
 	while(fgets(linea,MaxLinea,file)){
