@@ -20,9 +20,11 @@ int parser(FILE * file){
 	int i=0;
 
 	/*Leer cabecera*/
-	if(fgets(linea,MaxLinea,file)==NULL)
-		/*No hay cabecera*/
+	if(fgets(linea,MaxLinea,file)==NULL){
+		/*Fichero Vacio*/
+		fprintf(stderr,"ERROR: Fichero vacio\n");
 		return -1;
+	}
 
 	linea[strlen(linea)-1]='\0';
 	campo = strtok(linea,",");
@@ -34,8 +36,10 @@ int parser(FILE * file){
 	tam=i;
 
 	/*Cabecera vacia*/
-	if(tam==0)
+	if(tam==0){
+		fprintf(stderr,"ERROR: Cabecera vacia\n");
 		return -1;
+	}
 
 	/*Leer lineas*/
 	while(fgets(linea,MaxLinea,file)){
@@ -45,8 +49,10 @@ int parser(FILE * file){
 			i=0;
 			while(campo!=NULL){
 				/*Mas campos que los indicados en la cabecera*/
-				if(i>=tam)
+				if(i>=tam){
+					fprintf(stderr,"ERROR: Mas campos que los indicados en la cabecera\n");
 					return -1;
+				}
 				if(i==tam-1)
 					printf("%s: %s",cabecera[i],campo);
 				else
@@ -55,9 +61,11 @@ int parser(FILE * file){
 				campo = strtok(NULL, ",");
 			}
 			/*Menos campos que los indicados en la cabecera*/
-			if(i!=tam)
+			if(i!=tam){
+				fprintf(stderr,"ERROR: Menos campos que los indicados en la cabecera\n");
 				return-1;
-			printf("\n");
+			}
+			printf("\n"); 
 		}
 	}
 
